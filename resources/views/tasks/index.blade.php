@@ -7,7 +7,9 @@
     @if (count($tasks) > 0)
         <ul>
             @foreach ($tasks as $task)
+            @if (\Auth::id() === $task->user_id)
                 <li>{!! link_to_route('tasks.show', $task->id, ['id' => $task->id]) !!} : {{ $task->status }} > {{ $task->content }}</li>
+            @endif
             @endforeach
         </ul>
     @endif
